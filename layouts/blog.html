@@ -1,28 +1,73 @@
 {{#extend "default"}}
   {{#content "main"}}
 
-    <h1>Blog</h1>
+      <!-- Main -->
 
-    <ul>
-    {{#each pagination.files}}
-      <li>
-        <h2><a href="/{{{ this.path }}}/" rel="bookmark">{{this.title}}</a></h2>
-        {{{this.excerpt}}}
-      </li>
-    {{/each}}
-    </ul>
+        <article class="main-blog">
 
-    {{#if pagination}}
-      <nav class="pagination">
-        {{#if pagination.next}}
-          <a href="/{{removeIndex pagination.next.path}}" class="btn">&lt; Prev</a>
+          <!-- Article -->
+            {{#each pagination.files}}
+            <section class="wrapper style3 container special">
+
+              <header class="major">
+                <h2><a href="/{{{ this.path }}}/" rel="bookmark"><strong>{{this.title}}</strong></a></h2>
+              </header>
+
+              <div class="row">
+                <div class="12u">
+
+                  <section class="article-list">
+                    {{#if featureimage}}
+                      <a href="#" class="image featured">
+                      <img src="/static/images/pic01.jpg" alt="" /></a>
+                    {{/if}}
+                    {{{readmore this.excerpt this.path }}}
+                  </section>
+
+                </div>
+
+              </div>
+
+
+
+
+            </section>
+            {{/each}}
+
+        {{#if pagination}}
+        <footer class="major detail list">
+              <div class="row">              
+                                               
+                <div class="6u 12u(narrower)">
+                  {{#if pagination.next}}
+                  <section class="next-article">
+                    <a href="/{{removeIndex pagination.next.path}}" class="next right button">&lt;Older </a>
+                    </nav>
+                  </section>
+                  {{/if}} 
+                </div>
+                 <div class="6u 12u(narrower)">
+                  {{#if pagination.previous}}
+                  <section  class="float-right prev-article">   
+                    <a href="/{{removeIndex pagination.previous.path}}" class="prev button">Newer&gt;</a>
+                  </section>
+                  {{/if}}
+                </div>
+                               
+              </div>
+        </footer> 
         {{/if}}
+        </article>
 
-        {{#if pagination.previous}}
-          <a href="/{{removeIndex pagination.previous.path}}" class="btn">Next &gt;</a>
-        {{/if}}
-      </nav>
-    {{/if}}
+
+  <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/jquery.scrollgress.min.js"></script>
+    <script src="/assets/js/skel.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
 
   {{/content}}
 {{/extend}}

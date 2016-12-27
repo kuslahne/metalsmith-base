@@ -3,6 +3,10 @@ var path = require('path');
 var argv = require('minimist')(process.argv.slice(2));
 var gulp = require('gulp');
 var Metalsmith = require('metalsmith');
+var markdown = require('metalsmith-markdown');
+var assets = require('metalsmith-assets');
+// var googleAnalytics = require('metalsmith-google-analytics');
+// ...
 
 // Assets
 var sass = require('gulp-sass');
@@ -29,8 +33,16 @@ function setupMetalsmith(callback) {
   var msplugins = msconfig.plugins || {};
 
   ms.source(msconfig.config.contentRoot);
+
   ms.destination(msconfig.config.destRoot);
+  
   ms.metadata(msconfig.metadata);
+  ms.use(markdown());
+  // ms.use(googleAnalytics('UA-84763867-1'));
+  // ms.use(assets({
+  //   source: './content/images', // relative to the working directory
+  //   destination: './static/images' // relative to the build directory
+  // }));
 
   Object.keys(msplugins).forEach(function(key) {
     var plugin = require(key);
@@ -68,7 +80,13 @@ function setupMetalsmith(callback) {
 
 gulp.task('metalsmith', function(callback) {
   setupMetalsmith(callback);
+  
 });
+
+// gulp.task('copyimages', function(callback) {
+  
+
+// });
 
 gulp.task('vendor', function() {
   return gulp.src(site.vendor)

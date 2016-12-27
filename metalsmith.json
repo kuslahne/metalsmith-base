@@ -1,0 +1,16 @@
+{
+  "plugins": {
+    "metalsmith-assets": {
+      "source": "./assets",
+      "destination": "./assets"
+    },
+    "metalsmith-collections-paginate": {
+      "blog": {
+        "perPage": 5,
+        "template": "blog.html",
+        "first": "index.html",
+        "path": "blog/:num/index.html"
+      }
+    }
+  }
+}

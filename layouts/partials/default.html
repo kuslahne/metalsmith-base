@@ -4,21 +4,50 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>{{title}}</title>
+    <title>{{this.title}}</title>
     <meta name="description" content="{{ description }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/assets/app.css">
+    <link rel="stylesheet" href="/assets/css/main.css" />
   </head>
   <body data-function="{{function}}">
     <!--[if lt IE 8]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
+    <div id="page-wrapper" class="page{{#if collection}}-blog-post{{/if}}">
+        <!-- Header -->
+        {{#block "header"}}
+        {{> header}}
+        {{/block}}
 
-    {{#block "header"}}
-    {{> header}}
-    {{/block}}
+        <!-- Banner -->
+        {{#unless collection}}
+            <section id="banner">
 
+                <!--
+                    ".inner" is set up as an inline-block so it automatically expands
+                    in both directions to fit whatever's inside it. This means it won't
+                    automatically wrap lines, so be sure to use line breaks where
+                    appropriate (<br />).
+                -->
+                <div class="inner">
+
+                    <header>
+                        <h2>NATURE</h2>
+                    </header>
+                    <p><strong>A gift</strong>, baked with love to our environment.
+
+
+                    <br />
+                    And we will start talking a lot
+                    <br />
+                    about it..</p>
+
+                </div>
+
+            </section>
+        {{/unless}}
     {{#block "main"}}
     {{{contents}}}
     {{/block}}
@@ -27,8 +56,26 @@
     {{> footer}}
     {{/block}}
 
+    </div>
+
+
     <script src="/assets/vendor.js" async></script>
     <script src="/assets/app.js" async></script>
     {{#block "scripts"}}{{/block}}
+
+    
+
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <div class="ga-script">
+        <div id="ga-script"></div>
+        <script async="" src="//www.google-analytics.com/analytics.js"></script><script type="text/javascript">
+                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+                ga('create', 'UA-84763867-1', 'auto');
+                ga('send', 'pageview');
+        </script>
+    </div>
   </body>
 </html>
